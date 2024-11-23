@@ -1,0 +1,171 @@
+// // display variables
+// $small-display: 568px;
+// $medium-display: 768px;
+// $large-display: 992px;
+
+// // size variables
+// $logo-size: 2.4em;
+
+// // global
+// $small-padding: 1em;
+
+// // breakpoints
+// $breakpoints:(
+//     "small" : "max-width:#{$small-display}",
+//     "medium" : "max-width:#{$medium-display}",
+//     "large" : "max-width:#{$large-display}",
+// );
+
+// @mixin responsible($size){
+//     $query: map-get($breakpoints, $size);
+//     @media(#{$query}){
+//         @content
+//     }
+// }
+
+// a{
+//     text-decoration: none;
+//     color: unset;
+// }
+
+// .navbar{
+//     background-color: rgb(25, 79, 150);
+//     padding: 0 $small-padding;
+    
+//     width: 100%;
+
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+
+//     &-logo{
+//         box-sizing: unset;
+//         max-height: 2.4em;
+//         padding: $small-padding;
+
+//     }
+
+//     &-menu{
+//         display: none;
+//         height: $logo-size/2;
+//         width: $logo-size/2;
+//         box-sizing: unset;
+//         padding: $small-padding;
+//         @include responsible('small'){
+//             display: unset;
+//         }
+//     }
+
+//     &-elements{
+//         display: flex;
+//         align-items: center;
+
+
+//         @include responsible('small'){
+//             display: none;
+//         }
+
+//         &>a{
+//             padding: 0 $small-padding;
+//         }
+        
+        
+//     }
+// }
+
+// Variables and mixins
+$small-display: 568px;
+$medium-display: 768px;
+$large-display: 992px;
+
+$logo-size: 2.4em;
+$small-padding: 1em;
+
+$breakpoints: (
+    "small": "max-width: #{$small-display}",
+    "medium": "max-width: #{$medium-display}",
+    "large": "max-width: #{$large-display}"
+);
+
+@mixin responsible($size) {
+    $query: map-get($breakpoints, $size);
+    @media (#{$query}) {
+        @content;
+    }
+}
+
+// Global styles
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+// Navbar styling
+.navbar {
+    background-color: rgb(25, 79, 150);
+    padding: 0 $small-padding;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-logo {
+        box-sizing: unset;
+        max-height: 2.4em;
+        padding: $small-padding;
+    }
+
+    &-menu-icon {
+        display: none;
+        height: $logo-size / 2;
+        width: $logo-size / 2;
+        box-sizing: unset;
+        padding: $small-padding;
+
+        @include responsible("small") {
+            display: unset;
+        }
+    }
+
+    &-elements {
+        display: flex;
+        align-items: center;
+
+        @include responsible("small") {
+            display: none;
+        }
+
+        & > a {
+            padding: 0 $small-padding;
+        }
+    }
+
+    &-menu-container {
+        position: fixed;
+        top: 0;
+        right: -100%; // Hidden offscreen initially
+        width: 250px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9); // Dark overlay
+        color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 1.5em;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+        transition: right 0.3s ease;
+
+        &.open {
+            right: 0; // Slide in when menu is open
+        }
+
+        .navbar-menu-item {
+            font-size: 1.2em;
+            cursor: pointer;
+
+            &:hover {
+                color: #ccc;
+            }
+        }
+    }
+}

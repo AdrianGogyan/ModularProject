@@ -1,0 +1,21 @@
+// variables
+$main-color: #333;
+$font-color: #ddd;
+
+footer{
+    background: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // color: $font-color;
+    overflow: hidden;
+}
+
+table{
+    text-align: left;
+}
+
+th, td{
+    padding: 2px 2.4em;
+}
+
